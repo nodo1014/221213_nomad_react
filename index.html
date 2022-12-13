@@ -9,7 +9,6 @@
   <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
   <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <!-- Your custom script here -->
   <script type="text/babel">
   
     const App = () => {
@@ -20,17 +19,18 @@
       // const [counter, modifier] = data;
       console.log(data); // [0, f] : 초기값 0, counter 값을 바꿀 수 있는 함수
        */
-      const [counter, setCounter] = React.useState(0);
+      const [counter, setCounter] = React.useState(0); //[초기값, 수정함수]
       const onClick = () => {
-        setCounter(counter + 1);
+        // setCounter(counter + 1); // 콜백함수로 써야한다.(다른 업데이트로 인한 오작동 방지)
+        setCounter(current => current + 1); // 첫번째 인자는 현재값
       };
      return ( 
       <div>
       <h3>Total clicks: {counter}</h3>
-      
-      <button onClick={onClick}>Click me</button>
+      <button onClick={onClick}>Why_useState(0)</button>
       </div>
       )};
+
     ReactDOM.render(<App />, root);
   </script>
 </html>
