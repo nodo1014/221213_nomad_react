@@ -6,30 +6,22 @@
   <body>
     <div id="root"></div>
   </body>
-  <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
-  <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
   
-    const App = () => {
-    /* sh,alt + a
-     const data = React.useState(999); // [0, f] 배열 반환
-      const counter = data[0];
-      const modifier = data[1];
-      // const [counter, modifier] = data;
-      console.log(data); // [0, f] : 초기값 0, counter 값을 바꿀 수 있는 함수
-       */
-      const [counter, setCounter] = React.useState(0); //[초기값, 수정함수]
-      const onClick = () => {
-        // setCounter(counter + 1); // 콜백함수로 써야한다.(다른 업데이트로 인한 오작동 방지)
-        setCounter(current => current + 1); // 첫번째 인자는 현재값
-      };
-     return ( 
-      <div>
-      <h3>Total clicks: {counter}</h3>
-      <button onClick={onClick}>Why_useState(0)</button>
-      </div>
-      )};
+function App() {
+  return (
+    <div>
+      <h1 className="h1">Super Converter</h1>
+      <label htmlFor="minutes">Minutes</label>
+      <input id="minutes" type="number" placeholder="Minutes" />
+      <label htmlFor="hours">Hours</label>
+      <input id="hours" type="number" placeholder="Hours" />
+    </div>
+  );
+}
 
     ReactDOM.render(<App />, root);
   </script>
