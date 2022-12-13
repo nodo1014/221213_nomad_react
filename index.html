@@ -10,18 +10,29 @@
   <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
-  
-function App() {
-  return (
-    <div>
-      <h1 className="h1">Super Converter</h1>
-      <label htmlFor="minutes">Minutes</label>
-      <input id="minutes" type="number" placeholder="Minutes" />
-      <label htmlFor="hours">Hours</label>
-      <input id="hours" type="number" placeholder="Hours" />
-    </div>
-  );
-}
+    function App() {
+      const [minutes, setMinutes] = React.useState(); //초기값 x
+      const onChange = (event)=>{
+        console.log(event.target); 
+        // <input id="minutes" type="number" placeholder="Minutes" value="">
+        console.log(event.target.value);
+        setMinutes(event.target.value);
+      }
+      return (
+        <div>
+          <h1 className='h1'>Super Converter</h1>
+          <label htmlFor='minutes'>Minutes</label>
+          <input
+          onChange={onChange}
+          value={minutes}
+          id='minutes' type='number' placeholder='Minutes' />
+
+          <h4>You want to convert {minutes} </h4>
+          <label htmlFor='hours'>Hours</label>
+          <input id='hours' type='number' placeholder='Hours' />
+        </div>
+      );
+    }
 
     ReactDOM.render(<App />, root);
   </script>
