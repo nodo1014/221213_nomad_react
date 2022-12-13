@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>노마드 react</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <!-- Your custom script here -->
+  <script type="text/babel">
+  
+    const App = () => {
+    /* sh,alt + a
+     const data = React.useState(999); // [0, f] 배열 반환
+      const counter = data[0];
+      const modifier = data[1];
+      // const [counter, modifier] = data;
+      console.log(data); // [0, f] : 초기값 0, counter 값을 바꿀 수 있는 함수
+       */
+      const [counter, setCounter] = React.useState(0);
+      const onClick = () => {
+        setCounter(counter + 1);
+      };
+     return ( 
+      <div>
+      <h3>Total clicks: {counter}</h3>
+      
+      <button onClick={onClick}>Click me</button>
+      </div>
+      )};
+    ReactDOM.render(<App />, root);
+  </script>
+</html>

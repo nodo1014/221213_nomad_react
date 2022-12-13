@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+   <span>click me : 0</span>
+   <button id="btn">버튼</button>
+   <script>
+    const button = document.querySelector("#btn");
+    const span = document.querySelector("span");
+    // console.log(span.innerText);
+    let count = 0;
+    function countUp(){
+        // console.log("countup");
+        count = count +1;
+        span.innerText = `click me : ${count}`;
+    }
+    button.addEventListener("click", countUp);
+   </script>
+</body>
+
+</html>
