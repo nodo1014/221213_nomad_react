@@ -10,34 +10,49 @@
   <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
   <script type="text/babel">
     function App() {
-      const [minutes, setMinutes] = React.useState(0);
-      const [flipped, setFlipped] = React.useState(false);
+      const [amount, setAmount] = React.useState(0);
+      const [flipped, setFlipped] = React.useState(false); // FIXME: true/false 반전 기법
+
       const onChange = (e) => {
-        // minute = e.target.value;
-        setMinutes(e.target.value);
+        reset_f();
+        setAmount(e.target.value); // 이건 왜 세터...콜백 안쓰나?
       };
-
-      const reset_f = ()=>setMinutes(0);
-      const flipped_f = () =>setFlipped((current)=>!current);
-
-
-
+      const reset_f = () => setAmount(0);
+      const flipped_f = () => {
+        setFlipped((current) => !current);
+      };
       return (
-        <div>
-                    
+        <>
+          <h1>Super Converter</h1>
+
           <label htmlFor='minutes'>minutes</label>
-          <input type='number' id='minutes' onChange={onChange} disabled={!flipped} />
+          <input
+            value={flipped ? amount * 60 : amount}
+            id='minutes'
+            placeholder='Minutes'
+            type='number'
+            onChange={onChange}
+            // disabled={flipped === true}
+            disabled={flipped}
+          />
 
           <label htmlFor='hour'>hour</label>
-          <input value = {Math.round(minutes/60)} type='number' id='hour' placeholder='응?' disabled={flipped === true}/> 
-          
+          <input
+            value={flipped ? amount : Math.round(amount / 60)}
+            id='hour'
+            type='number'
+            //disabled={flipped === false}
+            onChange={onChange}
+            disabled={!flipped}
+          />
+          <p>버튼 속성을 어케 바꾸지? </p>
 
           <button onClick={reset_f}>reset</button>
-          <button onClick={flipped_f}>flipped</button>
-
-        </div>
+          <button onClick={flipped_f}>{!flipped ? 'Invert':'Turn back'}</button>
+        </>
       );
     }
 
