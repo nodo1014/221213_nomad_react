@@ -12,10 +12,10 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
   <script type="text/babel">
-    function App() {
-      const [amount, setAmount] = React.useState(0);
-      const [flipped, setFlipped] = React.useState(false); // FIXME: true/false 반전 기법
 
+    function Min() {
+      const [amount, setAmount] = React.useState(0);
+      const [flipped, setFlipped] = React.useState(false); // FIXME: toggle
       const onChange = (e) => {
         reset_f();
         setAmount(e.target.value); // 이건 왜 세터...콜백 안쓰나?
@@ -26,7 +26,7 @@
       };
       return (
         <>
-          <h1>Super Converter</h1>
+          <h3>1. Min 시간 변환기</h3>
 
           <label htmlFor='minutes'>minutes</label>
           <input
@@ -51,11 +51,44 @@
           <p>버튼 속성을 어케 바꾸지? </p>
 
           <button onClick={reset_f}>reset</button>
-          <button onClick={flipped_f}>{!flipped ? 'Invert':'Turn back'}</button>
+          <button onClick={flipped_f}>
+            {!flipped ? 'Invert' : 'Turn back'}
+          </button>
         </>
       );
     }
-
+    function Kil() {
+      return (
+        <h3>2. 킬로미터 변환</h3>
+      );
+    }
+    function App() {
+      const [opt, setOpt] = React.useState("0") // [modal, modalSet] = useState(0)-->{modal===true? : }
+      const selectConverter = (event)=>{
+        console.log(event);
+        setOpt(event.target.value);
+      }
+      return (
+        <div>
+          <h1>Super Converter</h1>
+            <select onChange={selectConverter}>
+              <option value="xx">골라주셈</option>
+              <option value="0">Min 시간 변환</option>
+              <option value="1">Kil 킬로 변환</option>
+            </select>
+           선택값opt는 {opt}
+           {opt === "xx"?"Please select your units":null}
+           {opt === "0"?<Min />:null}
+           {opt === "1"?<Kil />:null}
+{/*주석         
+           <h2>Modal창  0/1 방식</h2>
+           {opt === "0"?<Min />:<Kil />}
+ */}
+        </div>
+      );
+    }
+    const root = document.getElementById('root');
+    console.log(root);
     ReactDOM.render(<App />, root);
   </script>
 </html>
