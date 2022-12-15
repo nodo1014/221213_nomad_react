@@ -6,84 +6,46 @@
   <body>
     <div id="root"></div>
   </body>
-
   <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
   <script type="text/babel">
 
-    function Min() {
-      const [amount, setAmount] = React.useState(0);
-      const [flipped, setFlipped] = React.useState(false); // FIXME: toggle
-      const onChange = (e) => {
-        reset_f();
-        setAmount(e.target.value); // 이건 왜 세터...콜백 안쓰나?
-      };
-      const reset_f = () => setAmount(0);
-      const flipped_f = () => {
-        setFlipped((current) => !current);
-      };
-      return (
-        <>
-          <h3>1. Min 시간 변환기</h3>
-
-          <label htmlFor='minutes'>minutes</label>
-          <input
-            value={flipped ? amount * 60 : amount}
-            id='minutes'
-            placeholder='Minutes'
-            type='number'
-            onChange={onChange}
-            // disabled={flipped === true}
-            disabled={flipped}
-          />
-
-          <label htmlFor='hour'>hour</label>
-          <input
-            value={flipped ? amount : Math.round(amount / 60)}
-            id='hour'
-            type='number'
-            //disabled={flipped === false}
-            onChange={onChange}
-            disabled={!flipped}
-          />
-          <p>버튼 속성을 어케 바꾸지? </p>
-
-          <button onClick={reset_f}>reset</button>
-          <button onClick={flipped_f}>
-            {!flipped ? 'Invert' : 'Turn back'}
-          </button>
-        </>
-      );
+    function Btn({name, color, bool, onClick}){ //onClick 은 prop일 뿐
+      console.log(name, "렌더링 됐습니다. :props.name 렌더링 언제?")
+      // console.log({name}); // {name: 'banana'}
+      // console.log({color});
+      // console.log(bool); // false
+      // console.log({bool}); // {bool: false}
+      // console.log('return 다음은 jsx 문법이므로, 변수 사용시 {} ')
+      // console.log('프롭스로 전달된 onClick={func}은?',onClick);
+      return (<button
+      onClick={onClick} //여기 onClick 은 이벤트리스너
+        style = {{
+          fontSize: bool ? 18 : 10,
+          backgroundColor: color,
+          color:"white",
+          padding: "10px 20px",
+          border: 0,
+          borderRadius:10,
+        }}>{name}
+        </button>
+        );
     }
-    function Kil() {
-      return (
-        <h3>2. 킬로미터 변환</h3>
-      );
-    }
+
+    const 메모Btn = React.memo(Btn); // TODO: memo(Btn)::: Btn 대신 MemorizedBtn
+
     function App() {
-      const [opt, setOpt] = React.useState("0") // [modal, modalSet] = useState(0)-->{modal===true? : }
-      const selectConverter = (event)=>{
-        console.log(event);
-        setOpt(event.target.value);
-      }
+      const [value, setValue] = React.useState("save changed");
+      const changeValue = () =>setValue("revert changed"); //onClick 함수
       return (
         <div>
-          <h1>Super Converter</h1>
-            <select onChange={selectConverter}>
-              <option value="xx">골라주셈</option>
-              <option value="0">Min 시간 변환</option>
-              <option value="1">Kil 킬로 변환</option>
-            </select>
-           선택값opt는 {opt}
-           {opt === "xx"?"Please select your units":null}
-           {opt === "0"?<Min />:null}
-           {opt === "1"?<Kil />:null}
-{/*주석         
-           <h2>Modal창  0/1 방식</h2>
-           {opt === "0"?<Min />:<Kil />}
- */}
+          <메모Btn name={value} color="tomato" bool={true} onClick={changeValue}
+          //bool값은 {}로 전달
+          //onClick 은 모양은 같지만, 이벤트리스너가 아니라, 단순 html 이다. props 에  키로 전달
+          />
+          <메모Btn name="핑크버튼:continue" color="hotpink" bool={false} />
         </div>
       );
     }
