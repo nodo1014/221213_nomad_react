@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Blog from "./Blog";
 //https://api.coinpaprika.com/v1/tickers
 // 1. api 사용시, 처음 한번만 불러와야한다. 
 // `useEffect(()=>{fetch()
@@ -11,7 +12,7 @@ import axios from "axios";
 // 3. api 가져오는 동안, loading… 메세지 보이기(끝나면 없앤다.) : `const [loading, setLoading] = useState(true)`
 
 function App() {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true); // loading은 data
   const [coins, setCoins] = useState([]);
   const [apples, setApples] = useState([]);
 
@@ -32,6 +33,8 @@ function App() {
 
   return (
     <div>
+      <Blog />
+      {/* <Shop /> */}
       <h1>API loading? : {coins.length}</h1>
 
       {loading ? <strong>Loading......</strong> : null}
