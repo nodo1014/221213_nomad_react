@@ -3,8 +3,8 @@ import {
    BrowserRouter as Router, Switch, Route,
  } from "react-router-dom";
 
- 
-import Home from "./routes/Home";
+
+import Home from "./routes/Home"
 import ToDo from "./routes/ToDo";
 import Blog from "./routes/Blog";
 import Detail from "./routes/Detail";

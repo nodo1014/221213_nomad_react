@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+// App.js  <Route path="/movie/:id"> <Detail />
 
 const Detail = () => {
     // console.log(useParams()); // id : "44943"
