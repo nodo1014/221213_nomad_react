@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import "./Shop.css";
 import { Button, Navbar, Container, Nav } from "react-bootstrap";
 import bg from "./img/bg.png";
-import data from "./data.js";
+import data from "../data.js";
 import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 import Detail from "./routes/Detail.js";
 import Cart from "./routes/Cart.js";

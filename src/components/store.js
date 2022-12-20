@@ -1,5 +1,5 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit'
-import user from './store/userSlice.js'
+import user from '../store/userSlice.js'
 let cart = createSlice({
     name: 'cart',
     initialState: [
